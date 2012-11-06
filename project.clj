@@ -1,4 +1,4 @@
-(defproject google_api "0.1.0-SNAPSHOT"
+(defproject google_api "0.1.0"
   :description "Google api library for clojure"
   :url "github.com/dcar"
   :dependencies [[org.clojure/clojure "1.4.0"]
