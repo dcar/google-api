@@ -27,8 +27,7 @@
                   "redirect_uri=" redirect-uri "&" "grant_type=" grant-type "&" "code=" code)]
     (if-let  [req (client/post "https://accounts.google.com/o/oauth2/token"
                             { :body body
-                              :content-type "application/x-www-form-urlencoded"
-                              :insecure? true})]
+                              :content-type "application/x-www-form-urlencoded"})]
       (if-let [body (:body req)]
         (json/decode body true)
         (throw (Exception. (str "Error: " (:error req)))))
