@@ -49,13 +49,15 @@
           (client/get url default-params)) true))))
 
 (defn json-req [method options json-body token url]
-  (let [req (client/request
-              {:method method :url url :query-params options
-               :body json-body :oauth-token (:access_token token)
-               :content-type "application/json" :throw-exceptions false})]
-    (json/decode (:body req) true)))    
+  (let [token (if (map? token) (:access_token token) token)]
+    (let [req (client/request
+                {:method method :url url :query-params options
+                 :body json-body :oauth-token token
+                 :content-type "application/json" :throw-exceptions false})]
+      (json/decode (:body req) true))))
 
 (defn delete-req [id url token]
-  (let [req (client/delete url
-              {:query-params {:id id} :throw-exceptions false})]
-    (json/decode (:body req) true)))
+  (let [token (if (map? token) (:access_token token) token)]
+    (let [req (client/delete url
+                {:query-params {:id id} :outh-token token :throw-exceptions false})]
+      (json/decode (:body req) true))))
