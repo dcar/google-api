@@ -24,10 +24,10 @@
 
 (defn playlists
   "retrieve a list of playlists from a channel or set :mine to true and use token"
-  [options & token]
-  (if token
-    (query-req options playlist-url token)
-    (query-req options playlist-url)))
+  ([options]
+    (query-req options playlist-url))
+  ([options token]
+    (query-req options playlist-url token)))
 
 (defn playlist-items
   [options]

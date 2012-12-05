@@ -37,7 +37,8 @@
       (json/decode (:body req) true)
       (throw (Exception. "Error: No response!")))))
 
-(defn query-req [options url & token]
+(defn query-req 
+  [options url & [token]]
   (let [default-params { :query-params options :throw-exceptions false}]
     (if token
       (json/decode
