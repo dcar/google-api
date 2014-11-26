@@ -6,5 +6,5 @@
   (let [token (if (map? token) (:access_token token) token)]
     (if-let [req (client/get "https://www.googleapis.com/oauth2/v1/userinfo" {:oauth-token token
                                                                               :throw-exceptions false})]
-      (json/decode body true)
+      (json/decode (:body req) true)
       (throw (Exception. "Error: No response")))))
